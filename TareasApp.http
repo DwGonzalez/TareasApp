@@ -1,0 +1,6 @@
+@TareasApp_HostAddress = http://localhost:5178
+
+GET {{TareasApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
