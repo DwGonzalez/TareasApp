@@ -7,6 +7,6 @@
         public string Description { get; set; } = string.Empty;
         public Boolean IsCompleted { get; set; } = false;
         public DateTime DateCreated { get; set; } = DateTime.Now;
-
+        public string? UsuarioId { get; set; }
     }
 }
