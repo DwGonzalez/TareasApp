@@ -1,22 +1,31 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using TareasApp.Data;
 using TareasApp.Data.DTO;
+using TareasApp.Helper;
 using TareasApp.Entities;
 
 namespace TareasApp.Repository
 {
     public class TareasRepository : ITareasRepository
     {
-        AppDBContext _context;
+        private readonly AppDBContext _context;
+        private readonly UserManager<Usuario> _userManager;
 
-        public TareasRepository(AppDBContext context)
+        public TareasRepository(AppDBContext context, UserManager<Usuario> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<List<Tarea>> GetAllTareasAsync()
         {
             return await _context.Tareas.ToListAsync();
+        }
+
+        public async Task<List<Tarea>> GetAllUserTareas(Usuario user)
+        {
+            return await _context.Tareas.Where(t=>t.UsuarioId == user.Id).ToListAsync();
         }
 
         public async Task<Tarea?> GetTareaById(int id)
