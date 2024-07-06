@@ -23,9 +23,9 @@ namespace TareasApp.Repository
             return await _context.Tareas.ToListAsync();
         }
 
-        public async Task<List<Tarea>> GetAllUserTareas(Usuario user)
+        public async Task<List<Tarea>> GetAllUserTareas(string userId)
         {
-            return await _context.Tareas.Where(t=>t.UsuarioId == user.Id).ToListAsync();
+            return await _context.Tareas.Where(t=> t.UsuarioId == userId).ToListAsync();
         }
 
         public async Task<Tarea?> GetTareaById(int id)

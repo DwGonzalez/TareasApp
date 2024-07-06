@@ -48,7 +48,7 @@ namespace TareasApp.Controllers
             var email = User.GetEmail();
             var appUsuario = await _userManager.FindByEmailAsync(email);
 
-            var tareas = await _tareasRepository.GetAllUserTareas(appUsuario);
+            var tareas = await _tareasRepository.GetAllUserTareas(appUsuario.Id);
 
             return Ok(tareas);
         }
